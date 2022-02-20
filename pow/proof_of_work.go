@@ -4,7 +4,7 @@ import (
 	"crypto/sha256"
 	"fmt"
 
-	"github.com/PMoneda/bblock/block"
+	"github.com/PMoneda/gcoin/block"
 )
 
 func Work(difficult int64, previousBlockHash []byte, blockData []byte) *block.Block {

@@ -3,8 +3,8 @@ package pow
 import (
 	"testing"
 
-	"github.com/PMoneda/bblock/config"
-	"github.com/PMoneda/bblock/utils"
+	"github.com/PMoneda/gcoin/config"
+	"github.com/PMoneda/gcoin/utils"
 )
 
 func Test_ShouldCalculateHash(t *testing.T) {

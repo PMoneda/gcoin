@@ -4,8 +4,8 @@ import (
 	"errors"
 	"os"
 
-	"github.com/PMoneda/bblock/config"
-	"github.com/PMoneda/bblock/utils"
+	"github.com/PMoneda/gcoin/config"
+	"github.com/PMoneda/gcoin/utils"
 	bolt "go.etcd.io/bbolt"
 )
 

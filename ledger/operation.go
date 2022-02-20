@@ -1,9 +1,9 @@
 package ledger
 
 import (
-	"github.com/PMoneda/bblock/block"
-	"github.com/PMoneda/bblock/pow"
-	"github.com/PMoneda/bblock/utils"
+	"github.com/PMoneda/gcoin/block"
+	"github.com/PMoneda/gcoin/pow"
+	"github.com/PMoneda/gcoin/utils"
 )
 
 func (ledger *LedgerBook) AppendBlock(data []byte) (*block.Block, error) {

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"crypto/sha256"
 
-	"github.com/PMoneda/bblock/utils"
+	"github.com/PMoneda/gcoin/utils"
 )
 
 type Block struct {

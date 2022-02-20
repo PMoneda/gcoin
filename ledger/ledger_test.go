@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/PMoneda/bblock/config"
+	"github.com/PMoneda/gcoin/config"
 )
 
 func Test_ShouldCreateNewLedger(t *testing.T) {
