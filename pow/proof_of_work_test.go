@@ -12,7 +12,7 @@ func Test_ShouldCalculateHash(t *testing.T) {
 	data := []byte("Hello Block")
 	block := Work(config.PoW_Difficult, previousHash, data)
 	hash := block.GetHash()
-	if hash[0] != 0 || hash[1] != 0 || hash[2] >= 8 {
+	if hash[0] != 0 || hash[1] != 0 || hash[2] > 15 {
 		t.Fail()
 	}
 

@@ -13,6 +13,7 @@ func Work(difficult int64, previousBlockHash []byte, blockData []byte) *block.Bl
 	for {
 		block.SetNonce(nounce)
 		sum := sha256.Sum256(block.GetDataToSign())
+		sum = sha256.Sum256(sum[:])
 		if checkProofOfWork(difficult, sum) {
 			block.SetHash(sum[:])
 			break
