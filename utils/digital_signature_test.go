@@ -5,9 +5,9 @@ import (
 )
 
 func TestDigitalSignature(t *testing.T) {
-	pair := NewKeyPair()
+	privateKey := NewPrivateKey()
 
-	signature, err := Sign([]byte("Hello World"), pair.PrivateKey)
+	signature, err := Sign([]byte("Hello World"), privateKey)
 	if err != nil {
 		t.Fail()
 	}
