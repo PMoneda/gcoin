@@ -1,6 +1,11 @@
+/*
+Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+
+*/
 package main
 
-func main() {
-	//TODO
+import "github.com/PMoneda/gcoin/cmd"
 
+func main() {
+	cmd.Execute()
 }
