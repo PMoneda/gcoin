@@ -29,6 +29,9 @@ func NewLedgerFromPath(path string) (*LedgerBook, error) {
 		if _, err := tx.CreateBucket([]byte("Blocks")); err != nil {
 			return err
 		}
+		if _, err := tx.CreateBucket([]byte("Wallets")); err != nil {
+			return err
+		}
 		return nil
 	})
 	return &LedgerBook{

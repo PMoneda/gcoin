@@ -1,6 +1,12 @@
 package utils
 
-import "encoding/binary"
+import (
+	"encoding/binary"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"strings"
+)
 
 func Int64ToByteArray(value int64) []byte {
 	arr := make([]byte, 8)
@@ -32,4 +38,20 @@ func Int64FromArray(array []byte) int64 {
 
 func Int32FromArray(array []byte) int32 {
 	return int32(binary.LittleEndian.Uint32(array))
+}
+
+func GetRandomByteString(size int) (string, error) {
+	client := http.Client{}
+	resp, err := client.Get(fmt.Sprintf("https://www.random.org/cgi-bin/randbyte?nbytes=%d&format=h", size))
+	if err != nil {
+		return "", err
+	}
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	key := string(body)
+	key = strings.ReplaceAll(key, " ", "")
+	key = strings.ReplaceAll(key, "\n", "")
+	return key, nil
 }
