@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2022 Philippe Moneda <philippemoneda@gmail.com>
 
 */
 package main
