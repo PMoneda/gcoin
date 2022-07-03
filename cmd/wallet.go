@@ -16,9 +16,14 @@ var walletCmd = &cobra.Command{
 	Use:   "wallet",
 	Short: "Wallet cli to gcoin",
 	Long: `Wallet cli to gcoin
-	* Create new wallet
-	* Check funds of wallet
-	* Transfer money to different wallets`,
+
+Commands:
+
+list	- list all your contacts in your wallet
+status	- show the status of your wallet
+delete	- delete an alias contact from your wallet
+add	- add new contact to your wallet, you can define an alias with --alias flag
+	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		for i, k := range args {
 			fmt.Printf("%d, %s\n", i, k)

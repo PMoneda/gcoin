@@ -1,8 +1,7 @@
 package wallet
 
 import (
-	"fmt"
-
+	"github.com/PMoneda/gcoin/utils"
 	bolt "go.etcd.io/bbolt"
 )
 
@@ -12,7 +11,7 @@ func openWallet() (*bolt.DB, error) {
 	if dbWallet != nil {
 		return dbWallet, nil
 	}
-	dbWallet, err := bolt.Open("./wallet.db", 0666, nil)
+	dbWallet, err := utils.OpenBoltDb("wallet")
 	return dbWallet, err
 
 }
@@ -46,35 +45,15 @@ func getData(bucketName string, key string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	tx, err := wallet.Begin(false)
-	if err != nil {
-		return "", err
-	}
-	bucket := tx.Bucket([]byte(bucketName))
-	value := bucket.Get([]byte(key))
-	return string(value), nil
+	return utils.GetBoltData(wallet, bucketName, key)
 }
 
 func ListContacts() ([]string, error) {
-	return list("contacts")
-}
-
-func list(bucketName string) ([]string, error) {
-	contactList := make([]string, 0)
 	wallet, err := openWallet()
 	if err != nil {
 		return nil, err
 	}
-	tx, err := wallet.Begin(false)
-	if err != nil {
-		return nil, err
-	}
-	bucket := tx.Bucket([]byte(bucketName))
-	bucket.ForEach(func(k, v []byte) error {
-		contactList = append(contactList, fmt.Sprintf("%s:%s", string(k), string(v)))
-		return nil
-	})
-	return contactList, nil
+	return utils.ListBoltBucket(wallet, "contacts")
 }
 
 func DeleteAliasContact(alias string) error {
@@ -82,14 +61,5 @@ func DeleteAliasContact(alias string) error {
 	if err != nil {
 		return err
 	}
-	tx, err := wallet.Begin(true)
-	if err != nil {
-		return err
-	}
-	bucket := tx.Bucket([]byte("contacts"))
-	err = bucket.Delete([]byte(alias))
-	if err != nil {
-		return err
-	}
-	return tx.Commit()
+	return utils.DeleteBoltData(wallet, "contacts", alias)
 }
